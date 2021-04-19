@@ -21,6 +21,11 @@ public class Autor {
 	private String email;
 	private String descricao;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
+	
+	
+	@Deprecated
+	public Autor() {
+	}
 
 	public Autor(@NotNull @NotBlank String nome, @Email(message = "Email é obrigatorio!") String email,
 			@NotNull @NotBlank @Size(max = 400) String descricao) {

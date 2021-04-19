@@ -8,6 +8,10 @@ import br.com.orange.projeto1.modelo.Autor;
 
 public class AutorForm {
 
+
+	public AutorForm() {
+	}
+
 	@NotBlank
 	private String nome;
 
@@ -19,13 +23,12 @@ public class AutorForm {
 	@Size(max = 400)
 	private String descricao;
 
+	public String getEmail() {
+		return email;
+	}
 
 	public String getNome() {
 		return nome;
-	}
-
-	public String getEmail() {
-		return email;
 	}
 
 	public String getDescricao() {
