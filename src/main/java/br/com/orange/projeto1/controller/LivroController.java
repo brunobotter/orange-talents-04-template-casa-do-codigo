@@ -40,6 +40,7 @@ public class LivroController {
 	
 	@GetMapping
 	public ResponseEntity<List<LivroListaDto>> listaLivro(){
+		@SuppressWarnings("unchecked")
 		List<Livro> lista = manager.createQuery("select l from Livro l").getResultList();
 		List<LivroListaDto> dto =  lista.stream().map(l -> new LivroListaDto(l)).collect(Collectors.toList());
 		return ResponseEntity.ok(dto);

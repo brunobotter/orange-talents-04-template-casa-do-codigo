@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class ExisteIdValidator implements ConstraintValidator<ExisteId, Object>{
+public class NaoExisteIdValidator implements ConstraintValidator<NaoExisteId, Object>{
 
 	private String domain;
 	private Class<?> klass;
@@ -17,7 +17,7 @@ public class ExisteIdValidator implements ConstraintValidator<ExisteId, Object>{
 	private EntityManager manager;
 	
 	@Override
-	public void initialize(ExisteId constraintAnnotation) {
+	public void initialize(NaoExisteId constraintAnnotation) {
 		domain = constraintAnnotation.fieldName();
 		klass = constraintAnnotation.domainClass();
 		}
@@ -27,6 +27,6 @@ public class ExisteIdValidator implements ConstraintValidator<ExisteId, Object>{
 		Query query = manager.createQuery("select 1 from "+klass.getName()+" where "+ domain+"=:value");
 		query.setParameter("value", value);
 		List<?> list = query.getResultList();
-		return list.isEmpty();
+		return !list.isEmpty();
 	}
 }

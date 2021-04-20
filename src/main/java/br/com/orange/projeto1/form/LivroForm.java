@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import br.com.orange.projeto1.modelo.Autor;
 import br.com.orange.projeto1.modelo.Categoria;
 import br.com.orange.projeto1.modelo.Livro;
-import br.com.orange.projeto1.validator.ExisteId;
+import br.com.orange.projeto1.validator.NaoExisteId;
 import br.com.orange.projeto1.validator.UniqueValue;
 
 public class LivroForm {
@@ -51,11 +51,11 @@ public class LivroForm {
 	private LocalDate dataPublicacao;
 
 	@NotNull
-	@ExisteId(domainClass = Autor.class, fieldName = "id", message = "Id autor nao existe no banco")
+	@NaoExisteId(domainClass = Autor.class, fieldName = "id", message = "Id autor nao existe no banco")
 	private Long idAutor;
 
 	@NotNull
-	@ExisteId(domainClass = Categoria.class, fieldName = "id", message = "Id categoria nao existe no banco")
+	@NaoExisteId(domainClass = Categoria.class, fieldName = "id", message = "Id categoria nao existe no banco")
 	private Long idCategoria;
 
 	public String getTitulo() {
