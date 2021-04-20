@@ -36,7 +36,7 @@ public class ValidacaoErrorHandler {
 		return buildValidationError(globalError, fieldError);
 	}
 	
-	
+
 	private ValidacaoErrorSaida buildValidationError(List<ObjectError> globalError, List<FieldError> fieldError) {
 		ValidacaoErrorSaida validation = new ValidacaoErrorSaida();
 		globalError.forEach(error -> validation.addError(getErrorMessage(error)));

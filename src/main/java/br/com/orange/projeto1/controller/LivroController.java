@@ -11,11 +11,13 @@ import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.orange.projeto1.dto.DetalheLivroDto;
 import br.com.orange.projeto1.dto.LivroDto;
 import br.com.orange.projeto1.dto.LivroListaDto;
 import br.com.orange.projeto1.form.LivroForm;
@@ -41,5 +43,14 @@ public class LivroController {
 		List<Livro> lista = manager.createQuery("select l from Livro l").getResultList();
 		List<LivroListaDto> dto =  lista.stream().map(l -> new LivroListaDto(l)).collect(Collectors.toList());
 		return ResponseEntity.ok(dto);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<DetalheLivroDto> detalheLivro(@PathVariable Long id){
+		Livro livro = manager.find(Livro.class, id);
+		if(livro == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(new DetalheLivroDto(livro));
 	}
 }
