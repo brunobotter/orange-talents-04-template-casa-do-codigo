@@ -52,6 +52,10 @@ public class Livro {
 	@NotNull
 	@ManyToOne
 	private Categoria categoria;
+	
+	public Livro() {
+		
+	}
 
 	public Livro(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, @NotBlank String sumario,
 			@NotNull @Min(20) BigDecimal preco, @Min(100) @NotNull int numeroPaginas, @NotBlank String isbn,
@@ -66,6 +70,11 @@ public class Livro {
 		this.dataPublicacao = dataPublicacao;
 		this.autor = autor;
 		this.categoria = categoria;
+	}
+
+	public Livro(Livro listas) {
+		this.id = listas.getId();
+		this.titulo = listas.getTitulo();
 	}
 
 	public Long getId() {
