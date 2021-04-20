@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import br.com.orange.projeto1.modelo.Autor;
+import br.com.orange.projeto1.validator.UniqueValue;
 
 public class AutorForm {
 
@@ -17,6 +18,7 @@ public class AutorForm {
 
 	@NotBlank
 	@Email(message = "Email é obrigatorio!")
+	@UniqueValue(domainClass = Autor.class,fieldName = "email", message = "Não pode ter email repedito no cadastro!")
 	private String email;
 
 	@NotBlank
