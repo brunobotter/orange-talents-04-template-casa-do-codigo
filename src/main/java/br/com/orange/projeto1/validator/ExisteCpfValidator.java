@@ -8,9 +8,7 @@ import javax.persistence.Query;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.util.Assert;
-
-public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Object>{
+public class ExisteCpfValidator implements ConstraintValidator<ExisteCpf, Object>{
 
 	private String domain;
 	private Class<?> klass;
@@ -19,7 +17,7 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
 	private EntityManager manager;
 	
 	@Override
-	public void initialize(UniqueValue constraintAnnotation) {
+	public void initialize(ExisteCpf constraintAnnotation) {
 		domain = constraintAnnotation.fieldName();
 		klass = constraintAnnotation.domainClass();
 		}
@@ -29,8 +27,6 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
 		Query query = manager.createQuery("select 1 from "+klass.getName()+" where "+ domain+"=:value");
 		query.setParameter("value", value);
 		List<?> list = query.getResultList();
-		Assert.state(list.size() <=1, "Foi encontrado mais de um "+klass+"com atributo repetido");
 		return list.isEmpty();
 	}
-
 }

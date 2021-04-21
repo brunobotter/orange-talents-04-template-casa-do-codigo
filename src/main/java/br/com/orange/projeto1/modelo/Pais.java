@@ -3,6 +3,7 @@ package br.com.orange.projeto1.modelo;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ public class Pais {
 	@NotBlank
 	private String nome;
 
-	@OneToMany(mappedBy = "pais")
+	@OneToMany(mappedBy = "pais", fetch = FetchType.EAGER)
 	private List<Estado> estados;
 
 	public Pais(@NotBlank String nome2) {
