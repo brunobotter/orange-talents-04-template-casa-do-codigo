@@ -11,7 +11,7 @@ import br.com.orange.projeto1.modelo.Cliente;
 import br.com.orange.projeto1.modelo.Estado;
 import br.com.orange.projeto1.modelo.Pais;
 import br.com.orange.projeto1.validator.ExisteCpf;
-import br.com.orange.projeto1.validator.ExisteEstado;
+import br.com.orange.projeto1.validator.NaoExisteId;
 import br.com.orange.projeto1.validator.UniqueValue;
 
 public class ClienteForm {
@@ -41,9 +41,10 @@ public class ClienteForm {
 	private String cidade;
 
 	@NotNull
-	//@ExisteEstado(domainClass = Estado.class, fieldName = "pais.id", message = "Selecione um estado!")
+	@NaoExisteId(domainClass = Pais.class, fieldName = "id", message = "Id do pais nao existe")
 	private Long idPais;
 	
+	@NaoExisteId(domainClass = Estado.class, fieldName = "id",message = "Id do estado nao existe")
 	private Long idEstado;
 
 	@NotBlank
